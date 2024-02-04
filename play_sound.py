@@ -7,16 +7,16 @@ def play_sound(file_path):
     subprocess.run(['/usr/bin/afplay', file_path])
 
 def main(start_time, interval_minutes, repeat_count, sound_file_path):
-    current_time = time.strftime("%H:%M", time.localtime())
-    print(f"Current time: {current_time}")
-
-    # 指定した開始時刻まで待機
-    while current_time != start_time:
-        time.sleep(60)  # 1分ごとにチェック
+    for i in range(repeat_count):
         current_time = time.strftime("%H:%M", time.localtime())
         print(f"Current time: {current_time}")
 
-    for i in range(repeat_count):
+        # 指定した開始時刻まで待機
+        while current_time != start_time:
+            time.sleep(60)  # 1分ごとにチェック
+            current_time = time.strftime("%H:%M", time.localtime())
+            print(f"Current time: {current_time}")
+
         print(f"Playing sound at {current_time}...")
         play_sound(sound_file_path)
 
