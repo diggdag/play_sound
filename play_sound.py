@@ -6,9 +6,7 @@ import subprocess
 def play_sound(file_path):
     subprocess.run(['/usr/bin/afplay', file_path])
 
-def main(start_time, interval_minutes, repeat_count):
-    sound_file_path = "/Users/cangzhiliang/Downloads/sound.mp3"  # 固定の音声ファイルのパス
-
+def main(start_time, interval_minutes, repeat_count, sound_file_path):
     current_time = time.strftime("%H:%M", time.localtime())
     print(f"Current time: {current_time}")
 
@@ -29,13 +27,14 @@ def main(start_time, interval_minutes, repeat_count):
     print("Program completed.")
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        print("Usage: ./play_sound.py <start_time> <interval_minutes> <repeat_count>")
+    if len(sys.argv) != 5:
+        print("Usage: ./play_sound.py <start_time> <interval_minutes> <repeat_count> <sound_file_path>")
         sys.exit(1)
 
     start_time = sys.argv[1]
     interval_minutes = int(sys.argv[2])
     repeat_count = int(sys.argv[3])
+    sound_file_path = sys.argv[4]
 
     print("Starting the program...")
-    main(start_time, interval_minutes, repeat_count)
+    main(start_time, interval_minutes, repeat_count, sound_file_path)
